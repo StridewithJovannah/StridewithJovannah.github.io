@@ -1,0 +1,722 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Joyvelma Akinyi - Model, Entrepreneur, Beauty Visionary</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"></script>
+  <script src="/_sdk/element_sdk.js"></script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      height: 100%;
+      width: 100%;
+    }
+
+    body {
+      font-family: 'Garamond', 'Georgia', serif;
+      background-color: #111111;
+      color: #FFFFFF;
+      overflow-x: hidden;
+    }
+
+    :root {
+      --deep-charcoal: #111111;
+      --champagne-gold: #E6CBA8;
+      --blush-pink: #F8C8DC;
+      --soft-white: #FFFFFF;
+      --soft-gray: #A1A1AA;
+    }
+
+    h1, h2, h3 {
+      font-family: 'Garamond', 'Georgia', serif;
+      font-weight: 600;
+      letter-spacing: 2px;
+    }
+
+    p, a, button {
+      font-family: 'Segoe UI', 'Helvetica', sans-serif;
+      letter-spacing: 0.5px;
+    }
+
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-40px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(40px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes softGlow {
+      0%, 100% { box-shadow: 0 10px 40px rgba(230, 203, 168, 0.15); }
+      50% { box-shadow: 0 10px 60px rgba(230, 203, 168, 0.3); }
+    }
+
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(60px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .animate-fade-down { animation: fadeInDown 0.8s ease-out; }
+    .animate-fade-up { animation: fadeInUp 0.8s ease-out 0.2s both; }
+    .animate-slide-up { animation: slideUp 0.8s ease-out 0.4s both; }
+    .glow-effect { animation: softGlow 3s ease-in-out infinite; }
+
+    /* NAVBAR */
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(17, 17, 17, 0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(230, 203, 168, 0.1);
+      padding: 20px 40px;
+      z-index: 1000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .nav-logo {
+      font-size: 1.3rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      color: var(--champagne-gold);
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 40px;
+      align-items: center;
+    }
+
+    .nav-link {
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--soft-gray);
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    .nav-link:hover {
+      color: var(--champagne-gold);
+    }
+
+    .nav-vote-btn {
+      background: var(--champagne-gold);
+      color: var(--deep-charcoal);
+      padding: 12px 28px;
+      border-radius: 50px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .nav-vote-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(230, 203, 168, 0.3);
+    }
+
+    /* BUTTONS */
+    .btn-luxury {
+      background: var(--champagne-gold);
+      color: var(--deep-charcoal);
+      padding: 16px 48px;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      border: 2px solid var(--champagne-gold);
+      border-radius: 50px;
+      cursor: pointer;
+      transition: all 0.4s ease;
+      box-shadow: 0 8px 30px rgba(230, 203, 168, 0.2);
+    }
+
+    .btn-luxury:hover {
+      background: var(--blush-pink);
+      border-color: var(--blush-pink);
+      transform: translateY(-3px);
+      box-shadow: 0 12px 50px rgba(248, 200, 220, 0.3);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--champagne-gold);
+      padding: 16px 48px;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      border: 2px solid var(--champagne-gold);
+      border-radius: 50px;
+      cursor: pointer;
+      transition: all 0.4s ease;
+    }
+
+    .btn-outline:hover {
+      background: var(--champagne-gold);
+      color: var(--deep-charcoal);
+      transform: translateY(-3px);
+    }
+
+    /* FLOATING WHATSAPP */
+    .floating-whatsapp {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 60px;
+      height: 60px;
+      background: #25D366;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 999;
+      transition: all 0.3s ease;
+      box-shadow: 0 8px 30px rgba(37, 211, 102, 0.3);
+      text-decoration: none;
+    }
+
+    .floating-whatsapp:hover {
+      transform: scale(1.1);
+      box-shadow: 0 12px 50px rgba(37, 211, 102, 0.5);
+    }
+
+    .floating-whatsapp i {
+      width: 28px;
+      height: 28px;
+      color: white;
+    }
+
+    /* HERO SECTION */
+    .hero-section {
+      margin-top: 70px;
+      min-height: 100vh;
+      background: linear-gradient(135deg, var(--deep-charcoal) 0%, #1a1a1a 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      padding: 60px 40px;
+    }
+
+    .hero-content {
+      text-align: center;
+      max-width: 900px;
+    }
+
+    .hero-title {
+      font-size: 4.5rem;
+      font-weight: 700;
+      letter-spacing: 4px;
+      margin-bottom: 20px;
+      color: var(--soft-white);
+      text-transform: uppercase;
+    }
+
+    .hero-tagline {
+      font-size: 1.5rem;
+      font-weight: 300;
+      letter-spacing: 3px;
+      color: var(--champagne-gold);
+      margin-bottom: 30px;
+      text-transform: uppercase;
+    }
+
+    .hero-subtitle {
+      font-size: 1.1rem;
+      color: var(--soft-gray);
+      margin-bottom: 50px;
+      line-height: 1.8;
+      font-weight: 300;
+    }
+
+    /* SECTION STYLES */
+    .section {
+      width: 100%;
+      padding: 100px 40px;
+    }
+
+    .section-dark { background: var(--deep-charcoal); }
+    .section-light { background: #1a1a1a; }
+
+    .section-title {
+      font-size: 3.5rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 60px;
+      text-align: center;
+      color: var(--soft-white);
+    }
+
+    .section-accent { color: var(--champagne-gold); }
+
+    /* CARDS */
+    .luxury-card {
+      background: rgba(230, 203, 168, 0.05);
+      border: 1px solid rgba(230, 203, 168, 0.15);
+      border-radius: 12px;
+      padding: 50px 40px;
+      transition: all 0.5s ease;
+      backdrop-filter: blur(10px);
+      text-align: center;
+    }
+
+    .luxury-card:hover {
+      border-color: var(--champagne-gold);
+      background: rgba(230, 203, 168, 0.1);
+      transform: translateY(-10px);
+      box-shadow: 0 20px 60px rgba(230, 203, 168, 0.15);
+    }
+
+    .luxury-card h3 {
+      font-size: 1.8rem;
+      margin: 20px 0 15px 0;
+      color: var(--soft-white);
+    }
+
+    .luxury-card p {
+      color: var(--soft-gray);
+      line-height: 1.8;
+      margin-bottom: 20px;
+    }
+
+    /* GRID */
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 40px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 40px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    /* FOOTER */
+    footer {
+      background: var(--deep-charcoal);
+      border-top: 1px solid rgba(230, 203, 168, 0.1);
+      padding: 100px 40px 40px;
+    }
+
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .footer-cta {
+      background: rgba(230, 203, 168, 0.08);
+      border: 1px solid rgba(230, 203, 168, 0.15);
+      border-radius: 16px;
+      padding: 60px 40px;
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .footer-cta h3 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+      color: var(--champagne-gold);
+    }
+
+    .footer-cta p {
+      font-size: 1.1rem;
+      color: var(--soft-gray);
+      margin-bottom: 30px;
+    }
+
+    .footer-bottom {
+      text-align: center;
+      color: var(--soft-gray);
+      padding-top: 40px;
+      border-top: 1px solid rgba(230, 203, 168, 0.1);
+      font-size: 0.9rem;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      nav {
+        flex-direction: column;
+        gap: 15px;
+        padding: 15px 20px;
+      }
+
+      .nav-links {
+        gap: 20px;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .nav-link {
+        font-size: 0.8rem;
+      }
+
+      .hero-section {
+        margin-top: 0;
+        padding: 40px 20px;
+      }
+
+      .hero-title {
+        font-size: 2.5rem;
+        letter-spacing: 2px;
+      }
+
+      .hero-tagline {
+        font-size: 1.1rem;
+      }
+
+      .hero-subtitle {
+        font-size: 0.95rem;
+      }
+
+      .section-title {
+        font-size: 2rem;
+      }
+
+      .section {
+        padding: 60px 20px;
+      }
+
+      .floating-whatsapp {
+        bottom: 20px;
+        right: 20px;
+        width: 50px;
+        height: 50px;
+      }
+
+      .btn-luxury, .btn-outline {
+        padding: 12px 28px;
+        font-size: 12px;
+      }
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    /* SOCIAL ICONS */
+    .social-icon {
+      width: 45px;
+      height: 45px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(230, 203, 168, 0.1);
+      border: 1px solid rgba(230, 203, 168, 0.2);
+      border-radius: 50%;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-decoration: none;
+    }
+
+    .social-icon:hover {
+      background: var(--champagne-gold);
+      color: var(--deep-charcoal);
+      transform: translateY(-4px);
+    }
+
+    .social-icon i {
+      width: 20px;
+      height: 20px;
+    }
+  </style>
+  <style>body { box-sizing: border-box; }</style>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+ </head>
+ <body><!-- NAVIGATION BAR -->
+  <nav><a href="#home" class="nav-logo">JOYVELMA AKINYI</a>
+   <div class="nav-links"><a href="#home" class="nav-link">Home</a> <a href="#campaign" class="nav-link">Campaign</a> <a href="#services" class="nav-link">Services</a> <a href="#portfolio" class="nav-link">Portfolio</a> <a href="#collaborate" class="nav-link">Collaborate</a> <button class="nav-vote-btn" onclick="window.open('https://www.talitisha.co.ke/events/9cb5fc5d-f05b-4c00-8d94-aa0ce41f3e13', '_blank')">👑 Vote Now</button>
+   </div>
+  </nav><!-- FLOATING WHATSAPP --> <a href="https://wa.me/+254794423389" target="_blank" class="floating-whatsapp" title="Chat on WhatsApp"> <i data-lucide="message-circle"></i> </a> <!-- HERO SECTION -->
+  <section id="home" class="hero-section animate-fade-down">
+   <div class="hero-content">
+    <h1 id="hero-title" class="hero-title">JOYVELMA AKINYI</h1>
+    <p id="hero-tagline" class="hero-tagline">Model | Entrepreneur | Beauty Visionary</p>
+    <p id="hero-subtext" class="hero-subtitle">Empowering beauty, confidence, and purpose in every woman.</p>
+    <div style="display: flex; flex-direction: column; md:flex-row; gap: 20px; justify-content: center; flex-wrap: wrap; margin-top: 50px;" class="animate-fade-up"><button class="btn-luxury" onclick="window.open('https://www.talitisha.co.ke/events/9cb5fc5d-f05b-4c00-8d94-aa0ce41f3e13', '_blank')">💖 Vote Now</button> <button class="btn-outline" onclick="document.getElementById('services').scrollIntoView({behavior: 'smooth'})">💼 Work With Me</button> <button class="btn-outline" onclick="document.getElementById('portfolio').scrollIntoView({behavior: 'smooth'})">🛍 Shop</button>
+    </div>
+   </div>
+  </section><!-- CAMPAIGN SECTION -->
+  <section id="campaign" class="section section-light animate-slide-up">
+   <div style="max-width: 900px; margin: 0 auto;">
+    <h2 class="section-title">Miss Kisumu <span class="section-accent">2026</span></h2>
+    <div style="background: rgba(230, 203, 168, 0.08); border: 1px solid rgba(230, 203, 168, 0.15); border-radius: 16px; padding: 60px 40px; margin-bottom: 60px;">
+     <p id="campaign-story" style="font-size: 1.2rem; color: var(--soft-gray); line-height: 2; text-align: center; margin-bottom: 40px;">This journey is about inspiring every woman to embrace her power, celebrate her beauty, and believe in her dreams. I'm competing for Miss Kisumu 2026 to bring visibility to our community and create real impact through fashion, beauty, and authentic storytelling. Together, we can make history.</p>
+     <div style="text-align: center; margin-bottom: 40px;">
+      <p style="font-size: 1.1rem; color: var(--soft-gray); margin-bottom: 15px;">Each vote costs</p>
+      <p id="vote-cost" style="font-size: 2.5rem; color: var(--champagne-gold); font-weight: 700; letter-spacing: 2px;">KES 15</p>
+     </div>
+     <div style="text-align: center; margin-bottom: 40px;"><button class="btn-luxury glow-effect" onclick="window.open('https://www.talitisha.co.ke/events/9cb5fc5d-f05b-4c00-8d94-aa0ce41f3e13', '_blank')" style="padding: 18px 60px; font-size: 14px;">👉 VOTE NOW</button>
+     </div>
+     <p style="text-align: center; color: var(--soft-gray); font-size: 0.95rem;">Your support means everything to me ✨</p>
+    </div>
+    <div style="text-align: center;">
+     <p style="font-size: 1.3rem; font-weight: 600; color: var(--soft-white); margin-bottom: 30px; letter-spacing: 2px;">LET'S BRING THE CROWN HOME TOGETHER</p>
+     <div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;"><a href="https://wa.me/?text=Support%20Joyvelma%20Akinyi%20for%20Miss%20Kisumu%202026!%20Vote%20now%3A%20https://www.talitisha.co.ke/events/9cb5fc5d-f05b-4c00-8d94-aa0ce41f3e13" target="_blank" class="social-icon" title="Share on WhatsApp"> <i data-lucide="message-circle"></i> </a> <a href="https://www.instagram.com/akinyijoyvelma" target="_blank" class="social-icon" title="Follow on Instagram"> <i data-lucide="instagram"></i> </a> <a href="https://www.tiktok.com/@stridewith.jovanna" target="_blank" class="social-icon" title="Follow on TikTok"> <i data-lucide="music"></i> </a>
+     </div>
+    </div>
+   </div>
+  </section><!-- SERVICES SECTION -->
+  <section id="services" class="section section-dark">
+   <div style="max-width: 1200px; margin: 0 auto;">
+    <h2 class="section-title">Premium <span class="section-accent">Services</span></h2>
+    <div class="grid-3"><!-- HAIR SERVICES -->
+     <div class="luxury-card">
+      <div style="font-size: 3.5rem; margin-bottom: 20px;">
+       💇
+      </div>
+      <h3 id="hair-title">Professional Braiding &amp; Styling</h3>
+      <ul style="text-align: left; margin: 30px 0;">
+       <li style="color: var(--soft-gray); margin-bottom: 12px;">✓ Expert Braiding</li>
+       <li style="color: var(--soft-gray); margin-bottom: 12px;">✓ Custom Styling</li>
+       <li style="color: var(--soft-gray); margin-bottom: 12px;">✓ Hair Care Consultation</li>
+       <li style="color: var(--champagne-gold); font-weight: 600; margin-top: 20px;">From KES 500</li>
+      </ul><button class="btn-luxury" style="width: 100%;" onclick="window.open('https://wa.me/+254794423389', '_blank')">Order on WhatsApp</button>
+     </div><!-- FASHION SERVICES -->
+     <div class="luxury-card">
+      <div style="font-size: 3.5rem; margin-bottom: 20px;">
+       👗
+      </div>
+      <h3 id="fashion-title">Designer Styling &amp; Curation</h3>
+      <ul style="text-align: left; margin: 30px 0;">
+       <li style="color: var(--soft-gray); margin-bottom: 12px;">✓ Personal Styling Sessions</li>
+       <li style="color: var(--soft-gray); margin-bottom: 12px;">✓ Event Wardrobe Planning</li>
+       <li style="color: var(--soft-gray); margin-bottom: 12px;">✓ Outfit Curation</li>
+       <li style="color: var(--champagne-gold); font-weight: 600; margin-top: 20px;">From KES 1,500</li>
+      </ul><button class="btn-luxury" style="width: 100%;" onclick="window.open('https://wa.me/+254794423389', '_blank')">Order on WhatsApp</button>
+     </div><!-- BEAUTY PRODUCTS -->
+     <div class="luxury-card">
+      <div style="font-size: 3.5rem; margin-bottom: 20px;">
+       💅
+      </div>
+      <h3 id="beauty-title">Premium Beauty Products</h3>
+      <ul style="text-align: left; margin: 30px 0;">
+       <li style="color: var(--soft-gray); margin-bottom: 12px;">✓ Luxury Skincare</li>
+       <li style="color: var(--soft-gray); margin-bottom: 12px;">✓ Signature Accessories</li>
+       <li style="color: var(--soft-gray); margin-bottom: 12px;">✓ Beauty Essentials</li>
+       <li style="color: var(--champagne-gold); font-weight: 600; margin-top: 20px;">From KES 800</li>
+      </ul><button class="btn-luxury" style="width: 100%;" onclick="window.open('https://wa.me/+254794423389', '_blank')">Order on WhatsApp</button>
+     </div>
+    </div>
+   </div>
+  </section><!-- PORTFOLIO SECTION -->
+  <section id="portfolio" class="section section-light">
+   <div style="max-width: 1200px; margin: 0 auto;">
+    <h2 class="section-title">My <span class="section-accent">Portfolio</span></h2>
+    <div class="grid-2">
+     <div style="background: rgba(230, 203, 168, 0.08); border: 1px solid rgba(230, 203, 168, 0.15); border-radius: 12px; overflow: hidden; transition: all 0.4s ease; cursor: pointer;">
+      <div style="aspect-ratio: 1; background: linear-gradient(135deg, rgba(230, 203, 168, 0.1), rgba(248, 200, 220, 0.1)); display: flex; align-items: center; justify-content: center;"><i data-lucide="image" style="width: 60px; height: 60px; opacity: 0.3;"></i>
+      </div>
+      <div style="padding: 30px;">
+       <h3 style="font-size: 1.3rem; color: var(--soft-white); margin-bottom: 10px;">Modeling</h3>
+       <p style="color: var(--soft-gray); line-height: 1.6;">Professional shoots and high-fashion portfolio pieces</p>
+      </div>
+     </div>
+     <div style="background: rgba(230, 203, 168, 0.08); border: 1px solid rgba(230, 203, 168, 0.15); border-radius: 12px; overflow: hidden; transition: all 0.4s ease; cursor: pointer;">
+      <div style="aspect-ratio: 1; background: linear-gradient(135deg, rgba(230, 203, 168, 0.1), rgba(248, 200, 220, 0.1)); display: flex; align-items: center; justify-content: center;"><i data-lucide="sparkles" style="width: 60px; height: 60px; opacity: 0.3;"></i>
+      </div>
+      <div style="padding: 30px;">
+       <h3 style="font-size: 1.3rem; color: var(--soft-white); margin-bottom: 10px;">Events &amp; Appearances</h3>
+       <p style="color: var(--soft-gray); line-height: 1.6;">Red carpet moments and brand activations</p>
+      </div>
+     </div>
+     <div style="background: rgba(230, 203, 168, 0.08); border: 1px solid rgba(230, 203, 168, 0.15); border-radius: 12px; overflow: hidden; transition: all 0.4s ease; cursor: pointer;">
+      <div style="aspect-ratio: 1; background: linear-gradient(135deg, rgba(230, 203, 168, 0.1), rgba(248, 200, 220, 0.1)); display: flex; align-items: center; justify-content: center;"><i data-lucide="film" style="width: 60px; height: 60px; opacity: 0.3;"></i>
+      </div>
+      <div style="padding: 30px;">
+       <h3 style="font-size: 1.3rem; color: var(--soft-white); margin-bottom: 10px;">Fashion Content</h3>
+       <p style="color: var(--soft-gray); line-height: 1.6;">Style inspiration and designer collaborations</p>
+      </div>
+     </div>
+     <div style="background: rgba(230, 203, 168, 0.08); border: 1px solid rgba(230, 203, 168, 0.15); border-radius: 12px; overflow: hidden; transition: all 0.4s ease; cursor: pointer;">
+      <div style="aspect-ratio: 1; background: linear-gradient(135deg, rgba(230, 203, 168, 0.1), rgba(248, 200, 220, 0.1)); display: flex; align-items: center; justify-content: center;"><i data-lucide="video" style="width: 60px; height: 60px; opacity: 0.3;"></i>
+      </div>
+      <div style="padding: 30px;">
+       <h3 style="font-size: 1.3rem; color: var(--soft-white); margin-bottom: 10px;">Video Content</h3>
+       <p style="color: var(--soft-gray); line-height: 1.6;">TikTok and Instagram Reels showcasing my journey</p>
+      </div>
+     </div>
+    </div>
+    <div style="text-align: center; margin-top: 80px;"><button class="btn-luxury" onclick="window.open('https://www.instagram.com/akinyijoyvelma', '_blank')">📸 Book Me for Your Event</button>
+    </div>
+   </div>
+  </section><!-- COLLABORATION SECTION -->
+  <section id="collaborate" class="section section-dark">
+   <div style="max-width: 900px; margin: 0 auto; text-align: center;">
+    <h2 class="section-title">Let's Create <span class="section-accent">Together</span></h2>
+    <p style="font-size: 1.2rem; color: var(--soft-gray); line-height: 2; margin-bottom: 60px;">I'm collaborating with forward-thinking brands and event organizers who believe in authentic storytelling and luxury experiences.</p>
+    <div style="background: rgba(230, 203, 168, 0.08); border: 1px solid rgba(230, 203, 168, 0.15); border-radius: 16px; padding: 60px 40px; margin-bottom: 60px;">
+     <p style="font-size: 1.1rem; font-weight: 600; color: var(--champagne-gold); letter-spacing: 2px; margin-bottom: 40px; text-transform: uppercase;">Perfect For</p>
+     <div class="grid-3">
+      <div>
+       <div style="font-size: 2.5rem; margin-bottom: 15px;">
+        🤝
+       </div>
+       <p style="color: var(--soft-gray); font-size: 1.05rem;">Brand Partnerships</p>
+      </div>
+      <div>
+       <div style="font-size: 2.5rem; margin-bottom: 15px;">
+        🎬
+       </div>
+       <p style="color: var(--soft-gray); font-size: 1.05rem;">Content Creation</p>
+      </div>
+      <div>
+       <div style="font-size: 2.5rem; margin-bottom: 15px;">
+        🎉
+       </div>
+       <p style="color: var(--soft-gray); font-size: 1.05rem;">Event Hosting</p>
+      </div>
+     </div>
+    </div>
+    <div style="display: flex; flex-direction: column; md:flex-row; gap: 20px; justify-content: center; flex-wrap: wrap;"><button class="btn-luxury" onclick="window.open('https://wa.me/+254794423389', '_blank')">💬 WhatsApp Me</button> <button class="btn-outline" onclick="window.open('https://www.instagram.com/akinyijoyvelma', '_blank')">📱 Instagram DM</button>
+    </div>
+   </div>
+  </section><!-- SOCIAL HUB SECTION -->
+  <section class="section section-light">
+   <div style="max-width: 1200px; margin: 0 auto;">
+    <h2 class="section-title">Follow My <span class="section-accent">Journey</span></h2>
+    <div class="grid-3">
+     <div style="background: rgba(230, 203, 168, 0.08); border: 1px solid rgba(230, 203, 168, 0.15); border-radius: 16px; padding: 40px; text-align: center; cursor: pointer; transition: all 0.4s ease;" onclick="window.open('https://www.instagram.com/akinyijoyvelma', '_blank')"><i data-lucide="instagram" style="width: 48px; height: 48px; margin: 0 auto 20px; color: var(--champagne-gold);"></i>
+      <h3 style="font-size: 1.3rem; color: var(--soft-white); margin-bottom: 10px;">Instagram</h3>
+      <p style="color: var(--champagne-gold); font-weight: 600; margin-bottom: 15px;">@akinyijoyvelma</p>
+      <p style="color: var(--soft-gray); font-size: 0.95rem;">Daily inspiration &amp; behind-the-scenes moments</p>
+     </div>
+     <div style="background: rgba(230, 203, 168, 0.08); border: 1px solid rgba(230, 203, 168, 0.15); border-radius: 16px; padding: 40px; text-align: center; cursor: pointer; transition: all 0.4s ease;" onclick="window.open('https://www.tiktok.com/@stridewith.jovanna', '_blank')"><i data-lucide="music" style="width: 48px; height: 48px; margin: 0 auto 20px; color: var(--champagne-gold);"></i>
+      <h3 style="font-size: 1.3rem; color: var(--soft-white); margin-bottom: 10px;">TikTok</h3>
+      <p style="color: var(--champagne-gold); font-weight: 600; margin-bottom: 15px;">@stridewith.jovanna</p>
+      <p style="color: var(--soft-gray); font-size: 0.95rem;">Trending content &amp; viral fashion moments</p>
+     </div>
+     <div style="background: rgba(230, 203, 168, 0.08); border: 1px solid rgba(230, 203, 168, 0.15); border-radius: 16px; padding: 40px; text-align: center; cursor: pointer; transition: all 0.4s ease;" onclick="window.open('https://chat.whatsapp.com/H90WOnMSpGeIPXHGhZq7nq', '_blank')"><i data-lucide="message-circle" style="width: 48px; height: 48px; margin: 0 auto 20px; color: #25D366;"></i>
+      <h3 style="font-size: 1.3rem; color: var(--soft-white); margin-bottom: 10px;">WhatsApp Community</h3>
+      <p style="color: var(--champagne-gold); font-weight: 600; margin-bottom: 15px;">Exclusive Updates</p>
+      <p style="color: var(--soft-gray); font-size: 0.95rem;">Deals, updates &amp; VIP access</p>
+     </div>
+    </div>
+    <div style="text-align: center; margin-top: 60px;">
+     <p style="font-size: 1.15rem; color: var(--soft-gray);">Connect with thousands of supporters ✨</p>
+    </div>
+   </div>
+  </section><!-- FOOTER -->
+  <footer>
+   <div class="footer-content">
+    <div class="footer-cta">
+     <h3 id="footer-message">✨ Need a website like this?</h3>
+     <p>Built to grow your brand, attract clients, and make money online.</p><button class="btn-luxury" onclick="window.open('https://macreativesstudio.github.io', '_blank')">👉 Talk to Ma Creatives Studio</button>
+    </div>
+    <div style="text-align: center;">
+     <p style="color: var(--soft-gray); margin-bottom: 20px;">© 2026 Joyvelma Akinyi. All rights reserved.</p>
+     <p style="color: var(--soft-gray); font-size: 0.95rem;">Designed with elegance for ambition, beauty, and purpose.</p>
+    </div>
+   </div>
+  </footer>
+  <script>
+    const defaultConfig = {
+      hero_title: "JOYVELMA AKINYI",
+      hero_tagline: "Model | Entrepreneur | Beauty Visionary",
+      hero_subtext: "Empowering beauty, confidence, and purpose in every woman.",
+      campaign_story: "This journey is about inspiring every woman to embrace her power, celebrate her beauty, and believe in her dreams. I'm competing for Miss Kisumu 2026 to bring visibility to our community and create real impact through fashion, beauty, and authentic storytelling. Together, we can make history.",
+      vote_cost: "KES 15",
+      hair_title: "Professional Braiding & Styling",
+      fashion_title: "Designer Styling & Curation",
+      beauty_title: "Premium Beauty Products",
+      footer_message: "✨ Need a website like this?"
+    };
+
+    let config = { ...defaultConfig };
+
+    const elementConfig = {
+      defaultConfig,
+      onConfigChange: async (newConfig) => {
+        config = newConfig;
+
+        if (document.getElementById('hero-title')) {
+          document.getElementById('hero-title').textContent = config.hero_title || defaultConfig.hero_title;
+        }
+        if (document.getElementById('hero-tagline')) {
+          document.getElementById('hero-tagline').textContent = config.hero_tagline || defaultConfig.hero_tagline;
+        }
+        if (document.getElementById('hero-subtext')) {
+          document.getElementById('hero-subtext').textContent = config.hero_subtext || defaultConfig.hero_subtext;
+        }
+        if (document.getElementById('campaign-story')) {
+          document.getElementById('campaign-story').textContent = config.campaign_story || defaultConfig.campaign_story;
+        }
+        if (document.getElementById('vote-cost')) {
+          document.getElementById('vote-cost').textContent = config.vote_cost || defaultConfig.vote_cost;
+        }
+        if (document.getElementById('hair-title')) {
+          document.getElementById('hair-title').textContent = config.hair_title || defaultConfig.hair_title;
+        }
+        if (document.getElementById('fashion-title')) {
+          document.getElementById('fashion-title').textContent = config.fashion_title || defaultConfig.fashion_title;
+        }
+        if (document.getElementById('beauty-title')) {
+          document.getElementById('beauty-title').textContent = config.beauty_title || defaultConfig.beauty_title;
+        }
+        if (document.getElementById('footer-message')) {
+          document.getElementById('footer-message').textContent = config.footer_message || defaultConfig.footer_message;
+        }
+      },
+      mapToCapabilities: (cfg) => ({
+        recolorables: [],
+        borderables: [],
+        fontEditable: undefined,
+        fontSizeable: undefined
+      }),
+      mapToEditPanelValues: (cfg) => new Map([
+        ["hero_title", cfg.hero_title || defaultConfig.hero_title],
+        ["hero_tagline", cfg.hero_tagline || defaultConfig.hero_tagline],
+        ["hero_subtext", cfg.hero_subtext || defaultConfig.hero_subtext],
+        ["campaign_story", cfg.campaign_story || defaultConfig.campaign_story],
+        ["vote_cost", cfg.vote_cost || defaultConfig.vote_cost],
+        ["hair_title", cfg.hair_title || defaultConfig.hair_title],
+        ["fashion_title", cfg.fashion_title || defaultConfig.fashion_title],
+        ["beauty_title", cfg.beauty_title || defaultConfig.beauty_title],
+        ["footer_message", cfg.footer_message || defaultConfig.footer_message]
+      ])
+    };
+
+    if (window.elementSdk) {
+      window.elementSdk.init(elementConfig);
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      lucide.createIcons();
+    });
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        const href = this.getAttribute('href');
+        if (href !== '#' && document.querySelector(href)) {
+          e.preventDefault();
+          document.querySelector(href).scrollIntoView({ behavior: 'smooth' });
+        }
+      });
+    });
+  </script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9e039fdbe4d08a5e',t:'MTc3NDE2NjAyNi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+  </html>
