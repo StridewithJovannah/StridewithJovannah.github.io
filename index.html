@@ -1,0 +1,399 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stride With Joyvelma - Model | Entrepreneur | Beauty Visionary</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"></script>
+  <script src="/_sdk/element_sdk.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { height: 100%; scroll-behavior: smooth; }
+    body {
+      width: 100%;
+      font-family: 'Poppins', sans-serif;
+      background-color: #0B1F17;
+      color: #FFFFFF;
+      overflow-x: hidden;
+    }
+    :root {
+      --emerald: #046A38;
+      --dark-emerald: #0B1F17;
+      --gold: #C9A961;
+      --light-gold: #D4B896;
+      --white: #FFFFFF;
+      --gray: #B0B0B0;
+      --gold-metal: linear-gradient(135deg, #f0e0b5 0%, #c9a961 35%, #a07c3e 70%, #e8d4a8 100%);
+    }
+    h1, h2, h3 { font-family: 'Playfair Display', serif; font-weight: 800; }
+    p, a, button { font-family: 'Poppins', sans-serif; }
+
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes slideUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes slideDown { from { opacity: 0; transform: translateY(-40px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes scaleIn { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
+    @keyframes float { 0%,100% { transform: translateY(0px); } 50% { transform: translateY(28px); } }
+    @keyframes shimmer { 0% { background-position: -200% center; } 100% { background-position: 200% center; } }
+
+    /* Premium grain texture */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.04;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      z-index: 1;
+    }
+
+    #app { min-height: 100%; display: flex; flex-direction: column; width: 100%; overflow-x: hidden; position: relative; z-index: 2; }
+    .page { display: none; min-height: auto; animation: fadeIn 0.6s ease-out; width: 100%; }
+    .page.active { display: flex; flex-direction: column; width: 100%; }
+
+    /* NAVBAR */
+    nav {
+      position: sticky; top: 0; width: 100%;
+      background: linear-gradient(180deg, rgba(11,31,23,0.96) 0%, rgba(11,31,23,0.82) 100%);
+      backdrop-filter: blur(22px); -webkit-backdrop-filter: blur(22px);
+      border-bottom: 1px solid rgba(201,169,97,0.25);
+      padding: 22px 44px; z-index: 1000; display: flex; justify-content: space-between; align-items: center;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.25); animation: slideDown 0.6s ease-out;
+    }
+    .hamburger { display: none; flex-direction: column; cursor: pointer; gap: 6px; }
+    .hamburger span { width: 26px; height: 2.5px; background: var(--gold); border-radius: 2px; transition: all 0.4s ease; }
+    .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(6px,6px); }
+    .hamburger.active span:nth-child(2) { opacity: 0; }
+    .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(6px,-6px); }
+    .nav-logo {
+      font-size: 1.05rem; font-weight: 700; letter-spacing: 3.5px; text-decoration: none; text-transform: uppercase;
+      cursor: pointer; transition: all 0.3s ease; font-family: 'Playfair Display', serif;
+      background: var(--gold-metal); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .nav-logo:hover { letter-spacing: 4.5px; }
+    .nav-links { display: flex; gap: 38px; align-items: center; }
+    .nav-link { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 1.6px; color: var(--gray); text-decoration: none; cursor: pointer; transition: all 0.3s ease; font-weight: 600; position: relative; }
+    .nav-link::after { content: ''; position: absolute; bottom: -8px; left: 0; width: 0; height: 1.5px; background: var(--gold-metal); transition: width 0.4s ease; }
+    .nav-link:hover::after, .nav-link.active::after { width: 100%; }
+    .nav-link:hover, .nav-link.active { color: var(--gold); }
+    .nav-cta {
+      background: var(--gold-metal); color: var(--dark-emerald); padding: 12px 28px; border-radius: 50px; font-size: 11px;
+      font-weight: 700; letter-spacing: 1.4px; text-transform: uppercase; border: none; cursor: pointer; transition: all 0.4s ease;
+      box-shadow: 0 8px 24px rgba(201,169,97,0.22), inset 0 1px 0 rgba(255,255,255,0.35);
+    }
+    .nav-cta:hover { transform: translateY(-2px); box-shadow: 0 14px 36px rgba(201,169,97,0.35); }
+
+    /* BUTTONS */
+    .btn-primary {
+      background: var(--gold-metal); color: #0a1e16; padding: 15px 42px; font-size: 12.5px; font-weight: 700;
+      letter-spacing: 1.7px; text-transform: uppercase; border: none; border-radius: 50px; cursor: pointer; transition: all 0.45s ease;
+      box-shadow: 0 12px 32px rgba(201,169,97,0.28), inset 0 1px 0 rgba(255,255,255,0.4);
+      position: relative; overflow: hidden; background-size: 200% auto;
+    }
+    .btn-primary:hover { transform: translateY(-3px); background-position: right center; box-shadow: 0 18px 44px rgba(201,169,97,0.38); letter-spacing: 2px; }
+    .btn-secondary {
+      background: transparent; color: var(--gold); padding: 14px 40px; font-size: 12.5px; font-weight: 600; letter-spacing: 1.6px;
+      text-transform: uppercase; border: 1.5px solid rgba(201,169,97,0.6); border-radius: 50px; cursor: pointer; transition: all 0.4s ease;
+      backdrop-filter: blur(6px);
+    }
+    .btn-secondary:hover { background: rgba(201,169,97,0.08); color: var(--light-gold); transform: translateY(-2px); border-color: var(--gold); }
+
+    /* FLOATING WHATSAPP */
+    .floating-whatsapp {
+      position: fixed; bottom: 26px; right: 26px; width: 60px; height: 60px; background: #25D366; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 999; transition: all 0.3s ease;
+      box-shadow: 0 8px 28px rgba(37,211,102,0.38); text-decoration: none;
+    }
+    .floating-whatsapp:hover { transform: scale(1.08) translateY(-2px); box-shadow: 0 12px 40px rgba(37,211,102,0.5); }
+    .floating-whatsapp i { width: 28px; height: 28px; color: white; }
+
+    /* HERO */
+    .hero {
+      flex: 0 0 auto; display: flex; align-items: center; justify-content: center;
+      background: radial-gradient(1200px at 80% -10%, rgba(201,169,97,0.18), transparent 60%),
+                  linear-gradient(135deg, #071a13 0%, #0b2f21 45%, #0e4a33 100%);
+      position: relative; overflow: hidden; padding: 110px 32px 90px; min-height: 100vh; width: 100%;
+    }
+    .hero::before { content: ''; position: absolute; top: -40%; right: -15%; width: 680px; height: 680px; background: radial-gradient(circle, rgba(201,169,97,0.16) 0%, transparent 65%); border-radius: 50%; animation: float 9s ease-in-out infinite; }
+    .hero::after { content: ''; position: absolute; bottom: -25%; left: -10%; width: 520px; height: 520px; background: radial-gradient(circle, rgba(4,106,56,0.32) 0%, transparent 70%); border-radius: 50%; animation: float 11s ease-in-out infinite reverse; }
+    .hero-content { position: relative; z-index: 2; text-align: center; max-width: 1040px; animation: slideUp 1s ease-out; }
+    .hero h1 {
+      font-size: clamp(2.6rem, 8.5vw, 5rem); letter-spacing: 6px; color: var(--white); margin-bottom: 18px;
+      text-transform: uppercase; font-weight: 700; line-height: 1.05;
+      text-shadow: 0 2px 0 rgba(0,0,0,0.5), 0 30px 60px rgba(0,0,0,0.28);
+    }
+    .hero-subtitle {
+      font-size: clamp(0.95rem, 2.6vw, 1.25rem); margin-bottom: 56px; font-weight: 400; letter-spacing: 4px; text-transform: uppercase;
+      background: var(--gold-metal); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+      background-size: 200% auto; animation: shimmer 8s linear infinite;
+    }
+    .hero-buttons { display: flex; gap: 18px; justify-content: center; flex-wrap: wrap; }
+
+    /* PREMIUM BILLBOARD */
+    .billboard-wrap {
+      height: clamp(240px, 42vmin, 340px);
+      margin: 64px auto 48px;
+      width: min(90vw, 540px);
+      perspective: 1600px;
+    }
+    .cube {
+      width: 100%; height: 100%; position: relative; transform-style: preserve-3d;
+      animation: rotateCube 22s ease-in-out infinite; will-change: transform;
+    }
+    .cube:hover { animation-play-state: paused; }
+    @keyframes rotateCube {
+      0%, 17%   { transform: rotateY(0deg); }
+      22%, 39%  { transform: rotateY(-90deg); }
+      44%, 61%  { transform: rotateY(-180deg); }
+      66%, 83%  { transform: rotateY(-270deg); }
+      88%, 100% { transform: rotateY(-360deg); }
+    }
+    .cube-face {
+      position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+      border-radius: 18px; padding: 26px; text-align: center; font-weight: 800; letter-spacing: 1.4px; text-transform: uppercase;
+      font-size: clamp(1.05rem, 3.4vw, 1.7rem); line-height: 1.3; color: #e8d7b0;
+      background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
+      border: 1px solid rgba(201,169,97,0.32);
+      backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.07), inset 0 -20px 40px rgba(0,0,0,0.25), 0 24px 60px rgba(0,0,0,0.4);
+      backface-visibility: hidden;
+    }
+    .cube-face::after {
+      content: ''; position: absolute; inset: 0; border-radius: 18px;
+      background: radial-gradient(400px at 50% -20%, rgba(201,169,97,0.18), transparent 60%);
+      pointer-events: none;
+    }
+    .face-1 { transform: translateZ(calc(min(90vw,540px)/2)); }
+    .face-2 { transform: rotateY(90deg) translateZ(calc(min(90vw,540px)/2)); }
+    .face-3 { transform: rotateY(180deg) translateZ(calc(min(90vw,540px)/2)); }
+    .face-4 { transform: rotateY(-90deg) translateZ(calc(min(90vw,540px)/2)); }
+    .face-5 { transform: rotateY(-270deg) translateZ(calc(min(90vw,540px)/2)); }
+
+    /* CONTENT SECTIONS */
+    .content { flex: 1; display: flex; flex-direction: column; width: 100%; }
+    .section { width: 100%; padding: 110px 32px; position: relative; overflow: hidden; }
+    .section-dark { background: var(--dark-emerald); }
+    .section-light { background: linear-gradient(180deg, #0c241b 0%, #0f3a28 100%); }
+    .section-container { max-width: 1180px; margin: 0 auto; width: 100%; padding: 0 16px; position: relative; z-index: 2; }
+    .section-title { font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 16px; text-align: center; color: var(--white); line-height: 1.15; }
+    .section-accent { background: var(--gold-metal); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .section-title::after { content: ''; display: block; width: 84px; height: 2.5px; background: var(--gold-metal); margin: 22px auto 0; opacity: 0.9; }
+    .section-subtitle { font-size: 1.05rem; color: #c7c7c7; text-align: center; margin-bottom: 70px; line-height: 1.85; max-width: 820px; margin-left: auto; margin-right: auto; }
+
+    /* CARDS */
+    .card {
+      background: linear-gradient(180deg, rgba(201,169,97,0.08), rgba(201,169,97,0.03));
+      border: 1px solid rgba(201,169,97,0.18); border-radius: 16px; padding: 44px 32px;
+      transition: all 0.5s cubic-bezier(0.22,1,0.36,1); backdrop-filter: blur(8px); position: relative; overflow: hidden;
+    }
+    .card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, rgba(201,169,97,0.7), transparent); opacity: 0; transition: opacity 0.5s ease; }
+    .card::after { content: ''; position: absolute; inset: 0; background: radial-gradient(500px at var(--mx,50%) var(--my,50%), rgba(201,169,97,0.12), transparent 70%); opacity: 0; transition: opacity 0.3s ease; pointer-events: none; }
+    .card:hover { border-color: rgba(201,169,97,0.45); transform: translateY(-10px); box-shadow: 0 24px 60px rgba(0,0,0,0.35), 0 0 0 1px rgba(201,169,97,0.1) inset; background: linear-gradient(180deg, rgba(201,169,97,0.12), rgba(201,169,97,0.04)); }
+    .card:hover::before, .card:hover::after { opacity: 1; }
+    .card h3 { font-size: 1.35rem; margin: 18px 0 10px; color: #e0c78c; transition: all 0.3s ease; }
+    .card p { color: #b8b8b8; line-height: 1.8; font-size: 0.94rem; }
+
+    .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 26px; }
+    .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 26px; }
+
+    /* PORTFOLIO */
+    .portfolio-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 24px; }
+    .portfolio-item {
+      background: rgba(201,169,97,0.04); border: 1px solid rgba(201,169,97,0.14); border-radius: 14px; overflow: hidden;
+      transition: all 0.5s cubic-bezier(0.22,1,0.36,1); cursor: pointer; position: relative;
+    }
+    .portfolio-item:hover { border-color: rgba(201,169,97,0.4); transform: translateY(-8px); box-shadow: 0 22px 50px rgba(0,0,0,0.35); }
+    .portfolio-image { width: 100%; height: 260px; background: linear-gradient(135deg, rgba(201,169,97,0.08), rgba(4,106,56,0.08)); display: flex; align-items: center; justify-content: center; overflow: hidden; position: relative; }
+    .portfolio-image img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
+    .portfolio-item:hover .portfolio-image img { transform: scale(1.06); }
+    .portfolio-info { padding: 22px; }
+    .portfolio-item h3 { color: #e0c78c; font-size: 1.15rem; margin-bottom: 6px; font-weight: 700; }
+    .portfolio-item p { color: #b0b0b0; font-size: 0.88rem; line-height: 1.5; }
+
+    /* FOOTER */
+    footer {
+      background: linear-gradient(180deg, #081610 0%, #0a1f17 100%);
+      border-top: 1px solid rgba(201,169,97,0.22); padding: 80px 32px 40px; margin-top: auto; position: relative; width: 100%;
+    }
+    .footer-content { max-width: 1180px; margin: 0 auto; }
+    .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 48px; margin-bottom: 56px; }
+    .footer-section h3 { color: #e0c78c; font-size: 1.05rem; margin-bottom: 18px; text-transform: uppercase; letter-spacing: 1.8px; font-weight: 700; position: relative; }
+    .footer-section h3::after { content: ''; position: absolute; bottom: -8px; left: 0; width: 36px; height: 2px; background: var(--gold-metal); }
+    .footer-section ul { list-style: none; }
+    .footer-section li { margin-bottom: 12px; }
+    .footer-section a { color: #b8b8b8; text-decoration: none; transition: all 0.3s ease; font-size: 0.92rem; }
+    .footer-section a:hover { color: var(--gold); padding-left: 4px; }
+    .footer-socials { display: flex; gap: 14px; margin-top: 18px; flex-wrap: wrap; }
+    .social-icon { width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; background: rgba(201,169,97,0.08); border: 1px solid rgba(201,169,97,0.25); border-radius: 50%; cursor: pointer; transition: all 0.4s ease; color: #c9c9c9; }
+    .social-icon:hover { background: var(--gold-metal); color: #0a1e16; transform: translateY(-4px); border-color: transparent; box-shadow: 0 10px 24px rgba(201,169,97,0.28); }
+    .footer-divider { width: 100%; height: 1px; background: linear-gradient(90deg, transparent, rgba(201,169,97,0.28), transparent); margin: 40px 0; }
+    .footer-bottom { display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; color: #9a9a9a; font-size: 0.86rem; }
+
+    @media (max-width: 768px) {
+      nav { padding: 14px 18px; }
+      .hamburger { display: flex; }
+      .nav-links { position: absolute; top: 100%; left: 0; right: 0; background: rgba(8,22,16,0.98); backdrop-filter: blur(16px); flex-direction: column; gap: 0; padding: 0 18px; max-height: 0; overflow: hidden; transition: max-height 0.4s ease; border-bottom: 1px solid rgba(201,169,97,0.18); }
+      .nav-links.active { max-height: 420px; padding: 12px 18px 18px; }
+      .nav-link { padding: 14px 0; border-bottom: 1px solid rgba(201,169,97,0.08); width: 100%; }
+      .nav-link::after { display: none; }
+      .nav-cta { width: 100%; margin-top: 12px; }
+      .hero { padding: 88px 18px 70px; min-height: auto; }
+      .section { padding: 72px 18px; }
+      .floating-whatsapp { bottom: 18px; right: 18px; width: 54px; height: 54px; }
+      .portfolio-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); }
+      .footer-bottom { flex-direction: column; text-align: center; }
+    }
+  </style>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+ </head>
+ <body>
+  <div id="app">
+   <nav>
+    <a class="nav-logo" onclick="navigateTo('home')">STRIDE WITH JOYVELMA</a>
+    <div class="hamburger" id="hamburger" onclick="toggleMenu()"><span></span><span></span></div>
+    <div class="nav-links" id="nav-links">
+     <a class="nav-link active" onclick="navigateTo('home'); closeMenu()">Home</a>
+     <a class="nav-link" onclick="navigateTo('portfolio'); closeMenu()">Portfolio</a>
+     <a class="nav-link" onclick="navigateTo('gallery'); closeMenu()">Gallery</a>
+     <a class="nav-link" onclick="navigateTo('shop'); closeMenu()">Shop</a>
+     <a class="nav-link" onclick="navigateTo('services'); closeMenu()">Services</a>
+     <a class="nav-link" onclick="navigateTo('about'); closeMenu()">About</a>
+     <button class="nav-cta" onclick="window.open('https://wa.me/+254794423389', '_blank'); closeMenu()">Book Now</button>
+    </div>
+   </nav>
+
+   <a href="https://wa.me/+254794423389" target="_blank" class="floating-whatsapp" title="Chat on WhatsApp"><i data-lucide="message-circle"></i></a>
+
+   <!-- HOME -->
+   <div id="home-page" class="page active">
+    <section class="hero">
+     <div class="hero-content">
+      <h1 id="hero-title">JOYVELMA AKINYI</h1>
+      <p class="hero-subtitle" id="hero-tagline">Model | Entrepreneur | Beauty Visionary</p>
+      
+      <div class="billboard-wrap">
+        <div class="cube">
+          <div class="cube-face face-1" id="billboard-text">Redefining Beauty Standards</div>
+          <div class="cube-face face-2">Premium Quality</div>
+          <div class="cube-face face-3">Authenticity First</div>
+          <div class="cube-face face-4">Empowerment Mode</div>
+          <div class="cube-face face-5">✨ Stride ✨</div>
+        </div>
+      </div>
+
+      <div class="hero-buttons">
+       <button class="btn-primary" onclick="window.open('https://www.talitisha.co.ke/events/9cb5fc5d-f05b-4c00-8d94-aa0ce41f3e13', '_blank')">Vote Now</button>
+       <button class="btn-secondary" onclick="navigateTo('portfolio')">View Portfolio</button>
+       <button class="btn-secondary" onclick="window.open('https://wa.me/+254794423389', '_blank')">Work With Me</button>
+      </div>
+     </div>
+    </section>
+    <footer>
+     <div class="footer-content">
+      <div class="footer-grid">
+       <div class="footer-section"><h3>Quick Links</h3><ul><li><a onclick="navigateTo('portfolio')">My Work</a></li><li><a onclick="navigateTo('services')">Services</a></li><li><a onclick="navigateTo('about')">About Me</a></li><li><a onclick="navigateTo('home')">Home</a></li></ul></div>
+       <div class="footer-section"><h3>Follow Me</h3><div class="footer-socials"><a href="https://www.instagram.com/akinyijoyvelma" target="_blank" class="social-icon"><i data-lucide="instagram"></i></a><a href="https://www.tiktok.com/@stridewith.jovanna" target="_blank" class="social-icon"><i data-lucide="music"></i></a><a href="https://wa.me/+254794423389" target="_blank" class="social-icon"><i data-lucide="message-circle"></i></a></div></div>
+       <div class="footer-section"><h3>Contact</h3><ul><li><a href="https://wa.me/+254794423389">+254 794 423 389</a></li><li><a href="mailto:hello@stridewithjoyvelma.com">Email Me</a></li><li><a onclick="navigateTo('services')">Collaborations</a></li></ul></div>
+      </div>
+      <div class="footer-divider"></div>
+      <div class="footer-bottom"><p>© 2026 Stride With Joyvelma. All rights reserved.</p><p>Crafted with elegance by <a href="https://macreativesstudio.github.io" target="_blank" style="color: var(--gold); text-decoration: none;">Ma Creatives Studio</a></p></div>
+     </div>
+    </footer>
+   </div>
+
+   <!-- PORTFOLIO, GALLERY, SHOP, SERVICES, ABOUT -->
+   <!-- I kept your original sections exactly, only styling improved -->
+   <div id="portfolio-page" class="page">
+    <section class="section section-light"><div class="section-container"><h2 class="section-title">Featured <span class="section-accent">Work</span></h2><p class="section-subtitle">Highlights from my modeling and brand journey</p><div style="background: linear-gradient(135deg, rgba(201,169,97,0.12), rgba(4,106,56,0.12)); border: 1px solid rgba(201,169,97,0.25); border-radius: 16px; padding: 48px 32px; margin-bottom: 80px; backdrop-filter: blur(8px);"><div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 32px; text-align: center;"><div><div style="font-size: 2.2rem; margin-bottom: 8px;">🏆</div><p style="color: var(--gold); font-weight: 700; font-size: 1.15rem;">Miss Kisumu 2026</p><p style="color: var(--gray); font-size: 0.9rem;">Competing to inspire change</p></div><div><div style="font-size: 2.2rem; margin-bottom: 8px;">🎬</div><p style="color: var(--gold); font-weight: 700; font-size: 1.15rem;">Editorial Features</p><p style="color: var(--gray); font-size: 0.9rem;">Magazine covers and publications</p></div><div><div style="font-size: 2.2rem; margin-bottom: 8px;">🤝</div><p style="color: var(--gold); font-weight: 700; font-size: 1.15rem;">Luxury Brands</p><p style="color: var(--gray); font-size: 0.9rem;">Premium fashion partnerships</p></div></div></div><div class="portfolio-grid" id="portfolio-grid"></div><div style="text-align: center; margin-top: 60px;"><button class="btn-primary" onclick="window.open('https://www.instagram.com/akinyijoyvelma', '_blank')">See More on Instagram</button></div></div></section>
+   </div>
+
+   <div id="gallery-page" class="page">
+    <section class="section section-dark"><div class="section-container"><h2 class="section-title">Visual <span class="section-accent">Gallery</span></h2><p class="section-subtitle">Behind-the-scenes moments and professional shoots</p><div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 24px; margin-bottom: 80px;"><div class="card" style="text-align:center; padding:32px;"><div style="font-size: 2.4rem; color: var(--gold); font-weight: 800;">500+</div><p style="color: var(--gray);">Professional Shoots</p></div><div class="card" style="text-align:center; padding:32px;"><div style="font-size: 2.4rem; color: var(--gold); font-weight: 800;">150K+</div><p style="color: var(--gray);">Social Followers</p></div><div class="card" style="text-align:center; padding:32px;"><div style="font-size: 2.4rem; color: var(--gold); font-weight: 800;">50+</div><p style="color: var(--gray);">Brand Collabs</p></div><div class="card" style="text-align:center; padding:32px;"><div style="font-size: 2.4rem; color: var(--gold); font-weight: 800;">5+</div><p style="color: var(--gray);">Years in Industry</p></div></div><div class="portfolio-grid" id="gallery-grid"></div></div></section>
+   </div>
+
+   <div id="shop-page" class="page">
+    <section class="section section-light"><div class="section-container"><h2 class="section-title">Beauty <span class="section-accent">Shop</span></h2><p class="section-subtitle">Exclusive curated products and beauty essentials</p><div class="grid-3" id="shop-grid"></div></div></section>
+   </div>
+
+   <div id="services-page" class="page">
+    <section class="section section-dark"><div class="section-container"><h2 class="section-title">Premium <span class="section-accent">Services</span></h2><p class="section-subtitle">Tailored solutions for brands, events, and collaborations</p><div class="grid-3"><div class="card"><div style="font-size: 2.5rem;">👗</div><h3>Fashion Modeling</h3><p>Professional runway, editorial, and commercial modeling.</p><button class="btn-primary" style="width:100%; margin-top:20px;" onclick="window.open('https://wa.me/+254794423389', '_blank')">Inquire</button></div><div class="card"><div style="font-size: 2.5rem;">🤝</div><h3>Brand Ambassador</h3><p>Strategic representation for luxury and lifestyle brands.</p><button class="btn-primary" style="width:100%; margin-top:20px;" onclick="window.open('https://wa.me/+254794423389', '_blank')">Collaborate</button></div><div class="card"><div style="font-size: 2.5rem;">🎤</div><h3>Event Hosting</h3><p>Professional hosting and red carpet appearances.</p><button class="btn-primary" style="width:100%; margin-top:20px;" onclick="window.open('https://wa.me/+254794423389', '_blank')">Book</button></div><div class="card"><div style="font-size: 2.5rem;">💇</div><h3>Styling Services</h3><p>Personal styling and wardrobe curation.</p><button class="btn-primary" style="width:100%; margin-top:20px;" onclick="window.open('https://wa.me/+254794423389', '_blank')">Order</button></div><div class="card"><div style="font-size: 2.5rem;">💅</div><h3>Beauty Products</h3><p>Curated luxury skincare and essentials.</p><button class="btn-primary" style="width:100%; margin-top:20px;" onclick="window.open('https://wa.me/+254794423389', '_blank')">Shop</button></div><div class="card"><div style="font-size: 2.5rem;">🎬</div><h3>Content Creation</h3><p>Influencer content and digital storytelling.</p><button class="btn-primary" style="width:100%; margin-top:20px;" onclick="window.open('https://wa.me/+254794423389', '_blank')">Propose</button></div></div></div></section>
+   </div>
+
+   <div id="about-page" class="page">
+    <section class="section section-light"><div class="section-container"><h2 class="section-title">About <span class="section-accent">Me</span></h2><p class="section-subtitle" id="about-text">Model, entrepreneur, and beauty visionary empowering women through fashion, confidence, and authentic storytelling. Competing for Miss Kisumu 2026 to inspire change in my community.</p><div class="grid-2" style="margin-top: 50px;"><div class="card"><div style="font-size: 2.2rem;">👑</div><h3>My Mission</h3><p>Inspiring every woman to embrace her power and celebrate her beauty.</p></div><div class="card"><div style="font-size: 2.2rem;">✨</div><h3>My Vision</h3><p>Creating real impact through fashion, beauty, and authentic storytelling.</p></div><div class="card"><div style="font-size: 2.2rem;">🎯</div><h3>My Journey</h3><p>From passion to profession, breaking barriers in modeling and beauty.</p></div><div class="card"><div style="font-size: 2.2rem;">🌟</div><h3>My Values</h3><p>Authenticity, excellence, and empowerment drive everything I do.</p></div></div></div></section>
+   </div>
+  </div>
+
+  <script>
+    const portfolioItems = [
+      { image: "https://via.placeholder.com/600x600?text=Editorial", title: "Professional Modeling", description: "High-fashion editorial work" },
+      { image: "https://via.placeholder.com/600x600?text=Red+Carpet", title: "Red Carpet Moments", description: "Event appearances" },
+      { image: "https://via.placeholder.com/600x600?text=Fashion", title: "Fashion Content", description: "Designer collaborations" },
+      { image: "https://via.placeholder.com/600x600?text=Social", title: "Social Media Impact", description: "TikTok and Instagram" },
+      { image: "https://via.placeholder.com/600x600?text=Beauty", title: "Beauty Campaign", description: "Skincare partnerships" },
+      { image: "https://via.placeholder.com/600x600?text=Brand", title: "Brand Collaboration", description: "Luxury ambassador work" }
+    ];
+    const galleryItems = [
+      { image: "https://via.placeholder.com/600x600?text=Studio", title: "Studio Session", description: "Behind the scenes" },
+      { image: "https://via.placeholder.com/600x600?text=Runway", title: "Fashion Week", description: "Runway moments" },
+      { image: "https://via.placeholder.com/600x600?text=Lifestyle", title: "Personal Brand", description: "Authentic lifestyle" },
+      { image: "https://via.placeholder.com/600x600?text=Event", title: "Event Highlights", description: "Premium appearances" },
+      { image: "https://via.placeholder.com/600x600?text=Editorial", title: "Editorial Shoot", description: "Magazine features" },
+      { image: "https://via.placeholder.com/600x600?text=Campaign", title: "Campaign Work", description: "Brand campaigns" }
+    ];
+    const shopItems = [
+      { emoji: "💧", title: "Luxury Skincare Set", description: "Premium facial care collection", price: "KES 3,500" },
+      { emoji: "💄", title: "Signature Lip Collection", description: "Exclusive lipstick colors", price: "KES 1,200" },
+      { emoji: "✨", title: "Glow Essentials Kit", description: "Radiant skin essentials", price: "KES 2,800" },
+      { emoji: "💅", title: "Nail Beauty Bundle", description: "Premium nail care", price: "KES 1,800" },
+      { emoji: "🧴", title: "Hydration Serum", description: "Deep moisturizing serum", price: "KES 2,200" },
+      { emoji: "👑", title: "Luxury Hair Care", description: "Professional hair treatment", price: "KES 3,200" }
+    ];
+
+    function navigateTo(page) {
+      document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+      document.getElementById(`${page}-page`).classList.add('active');
+      document.querySelectorAll('.nav-link').forEach((link,i) => {
+        link.classList.toggle('active', link.textContent.toLowerCase().includes(page) || (page==='home'&&i===0));
+      });
+      window.scrollTo(0,0); closeMenu();
+    }
+    function toggleMenu(){ document.getElementById('hamburger').classList.toggle('active'); document.getElementById('nav-links').classList.toggle('active'); }
+    function closeMenu(){ document.getElementById('hamburger').classList.remove('active'); document.getElementById('nav-links').classList.remove('active'); }
+
+    function generatePortfolioGrid(){ const grid=document.getElementById('portfolio-grid'); if(!grid) return; grid.innerHTML=''; portfolioItems.forEach(item=>{ grid.innerHTML+=`<div class="portfolio-item"><div class="portfolio-image"><img src="${item.image}" alt="${item.title}" loading="lazy"></div><div class="portfolio-info"><h3>${item.title}</h3><p>${item.description}</p></div></div>`; }); }
+    function generateGalleryGrid(){ const grid=document.getElementById('gallery-grid'); if(!grid) return; grid.innerHTML=''; galleryItems.forEach(item=>{ grid.innerHTML+=`<div class="portfolio-item"><div class="portfolio-image"><img src="${item.image}" alt="${item.title}" loading="lazy"></div><div class="portfolio-info"><h3>${item.title}</h3><p>${item.description}</p></div></div>`; }); }
+    function generateShopGrid(){ const grid=document.getElementById('shop-grid'); if(!grid) return; grid.innerHTML=''; shopItems.forEach(item=>{ grid.innerHTML+=`<div class="card" style="text-align:center;"><div style="font-size:2.8rem; margin-bottom:12px;">${item.emoji}</div><h3>${item.title}</h3><p>${item.description}</p><p style="color: var(--gold); font-weight:700; margin:12px 0;">${item.price}</p><button class="btn-primary" style="width:100%;" onclick="window.open('https://wa.me/+254794423389?text=Interested in ${encodeURIComponent(item.title)}','_blank')">Order Now</button></div>`; }); }
+
+    // Premium card light follow
+    document.addEventListener('mousemove', e => {
+      document.querySelectorAll('.card').forEach(card => {
+        const r = card.getBoundingClientRect();
+        card.style.setProperty('--mx', `${e.clientX - r.left}px`);
+        card.style.setProperty('--my', `${e.clientY - r.top}px`);
+      });
+    });
+
+    document.addEventListener('DOMContentLoaded', () => {
+      lucide.createIcons(); generatePortfolioGrid(); generateGalleryGrid(); generateShopGrid();
+    });
+
+    // Canva SDK config
+    const defaultConfig = { hero_title: "JOYVELMA AKINYI", hero_tagline: "Model | Entrepreneur | Beauty Visionary", about_text: document.getElementById('about-text')?.textContent };
+    if (window.elementSdk) {
+      window.elementSdk.init({
+        defaultConfig,
+        onConfigChange: (cfg) => {
+          document.getElementById('hero-title').textContent = cfg.hero_title || defaultConfig.hero_title;
+          document.getElementById('hero-tagline').textContent = cfg.hero_tagline || defaultConfig.hero_tagline;
+          document.getElementById('billboard-text').textContent = cfg.billboard_text || "Redefining Beauty Standards";
+          document.getElementById('about-text').textContent = cfg.about_text || defaultConfig.about_text;
+        }
+      });
+    }
+  </script>
+ </body>
+  </html>
